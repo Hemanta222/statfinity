@@ -1,9 +1,18 @@
-import { Box, Heading, Input } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  Image,
+  Input,
+  SimpleGrid,
+  Stack,
+} from "@chakra-ui/react";
 import React from "react";
 
 const Header = () => {
   return (
-    <Box bg="red.400" width={"100%"}>
+    <Box  width={"100%"}  bg='#ffc107'>
       <Box
         width={"90%"}
         height={"80px"}
@@ -12,7 +21,11 @@ const Header = () => {
         alignItems="center"
         mx="auto"
       >
-        <Heading>Pokemon</Heading>
+        <Flex  align="center">
+          <Image src="/logo.png" alt="logo" width="60px" />
+          <Image src="/logo-text.png" alt="logo" height={"52px"} />
+        </Flex>
+
         <Box width={{ base: 100, sm: 200, md: 300 }}>
           <Input placeholder="Subtle" variant="subtle" />
         </Box>

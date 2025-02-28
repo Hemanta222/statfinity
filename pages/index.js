@@ -27,23 +27,35 @@ export default function HomePage({ data }) {
       </Head>
 
       <main>
-        <Box width={"100%"} bg="red.300" py={"4"}>
-          <Grid
-            templateColumns={{
-              base: "repeat(2, 1fr)",
-              md: "repeat(3, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            gap="6"
-            mx="auto"
-            width={"90%"}
-          >
-            {data.map((pokemon) => (
-              <GridItem key={pokemon.id}>
-                <PokemonCard data={pokemon} />
-              </GridItem>
-            ))}
-          </Grid>
+        <Box
+          width={"100%"}
+          // height={"100vh"}
+          bg="red.300"
+          // py={"4"}
+          bgImage="url('/forest.jpg')"
+          bgPosition="center"
+          bgRepeat="no-repeat"
+          bgSize="cover"  zIndex={-1}
+         
+        >
+          <Box width="100%" height="100%" zIndex={1} backgroundColor="rgba(235, 235, 235, 0.3)" py={8}>
+            <Grid
+              templateColumns={{
+                base: "repeat(2, 1fr)",
+                md: "repeat(3, 1fr)",
+                lg: "repeat(4, 1fr)",
+              }}
+              gap="6"
+              mx="auto"
+              width={"90%"}
+            >
+              {data.map((pokemon) => (
+                <GridItem key={pokemon.id}>
+                  <PokemonCard data={pokemon} />
+                </GridItem>
+              ))}
+            </Grid>
+          </Box>
         </Box>
       </main>
     </>

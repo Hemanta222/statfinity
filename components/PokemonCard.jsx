@@ -1,4 +1,4 @@
-import { Box, Card } from "@chakra-ui/react";
+import { Box, Card, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -17,17 +17,28 @@ const PokemonCard = ({ data }) => {
       variant="elevated"
       display="flex"
       alignItems="center"
-      _hover={{ cursor: "pointer" }}
+      borderRadius={16}
+      transition='all .2s ease-in'
+      _hover={{
+        cursor: "pointer",
+        border: "3px solid #ffc107",
+        boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.5)",scale:'1.05',
+        bg:'rgba(255, 255, 255, 0.29)',
+      }}
       onClick={() => router.push(`/pokemon/${id}`)}
     >
       <Box position="relative" width="100%" pt="56.25%" mt={8}>
         <Image src={image} alt={name} fill="true" priority={true} />
       </Box>
 
-      <Card.Body gap="2">
-        <Card.Title textTransform="capitalize" mt={8}>
+      <Card.Body>
+        <Card.Title textTransform="capitalize" mt={6} _hover={{fontWeight:'bolder'}}>
           {name}
         </Card.Title>
+        {/* <Card.Description  mt={8}> */}
+        <Text textAlign="center" my={1} color="gray.600">
+          #{id.toString().length < 2 ? "0" + id : id}
+        </Text>
       </Card.Body>
     </Card.Root>
   );
