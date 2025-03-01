@@ -25,7 +25,7 @@ const Footer = () => {
         }}
         gap="6"
         mx="auto"
-        width={"90%"}
+        width={"90%"} 
         p={5}
       >
         <GridItem>

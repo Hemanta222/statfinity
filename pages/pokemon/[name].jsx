@@ -6,7 +6,12 @@ import React from "react";
 const PokemonDetailsPage = ({ pokemonDetails }) => {
   return (
     <Box width={"90%"} py={"4"} mx="auto">
-      <Card.Root flexDirection="row" overflow="hidden" p={{ base: 2, sm: 8 }} variant='elevated'>
+      <Card.Root
+        flexDirection="row"
+        overflow="hidden"
+        p={{ base: 2, sm: 8 }}
+        variant="elevated"
+      >
         <Image
           src={pokemonDetails?.sprites?.other?.dream_world?.front_default}
           alt={pokemonDetails.name}
@@ -175,5 +180,19 @@ export async function getStaticPaths() {
 }
 export async function getStaticProps({ params }) {
   const pokemonDetails = await getPokemonDetailsById(params.name.toString());
-  return { props: { pokemonDetails } };
+  return {
+    props: {
+      pokemonDetails: {
+        moves: pokemonDetails.moves,
+        stats: pokemonDetails.stats,
+        abilities: pokemonDetails.abilities,
+        types: pokemonDetails.types,
+        height: pokemonDetails.height,
+        weight: pokemonDetails.weight,
+        sprites: pokemonDetails.sprites,
+        name: pokemonDetails.name,
+        id: pokemonDetails.id,
+      },
+    },
+  };
 }

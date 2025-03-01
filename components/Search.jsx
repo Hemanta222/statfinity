@@ -25,7 +25,7 @@ const Search = () => {
     } else {
       router.push(`/`);
     }
-  }, [selected]);
+  }, [selected?.value]);
 
   return (
     <Select
