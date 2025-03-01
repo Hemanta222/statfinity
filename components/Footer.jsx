@@ -1,6 +1,7 @@
 import {
   Box,
   Center,
+  Flex,
   Grid,
   GridItem,
   Heading,
@@ -11,10 +12,12 @@ import {
 } from "@chakra-ui/react";
 import NextImage from "next/image";
 import React from "react";
+import { useRouter } from "next/router";
 
 const Footer = () => {
+  const router = useRouter();
   return (
-    <Box width={"100%"} display="flex" justifyContent="center"   bg='#ffc107'>
+    <Box width={"100%"} display="flex" justifyContent="center" bg="#ffc107">
       <Grid
         templateColumns={{
           base: "repeat(1, 1fr)",
@@ -23,11 +26,15 @@ const Footer = () => {
         gap="6"
         mx="auto"
         width={"90%"}
-      
         p={5}
       >
         <GridItem>
-          <Stack width="160px">
+          <Stack
+            width="160px"
+            onClick={() => router.push("/")}
+            cursor="pointer"
+            // display={{ base: "none", sm: "block" }}
+          >
             <Center>
               <Image src="/logo.png" alt="logo" width="60px" />
             </Center>
@@ -38,6 +45,7 @@ const Footer = () => {
               width="180px"
             />
           </Stack>
+ 
           {/* <NextImage src="/logo.png" alt="logo" fill='true' />
           </Image> */}
           {/* <Heading mb={4}>Pokemon Explorer</Heading> */}

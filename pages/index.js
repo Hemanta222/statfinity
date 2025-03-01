@@ -1,8 +1,7 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import PokemonCard from "@/components/PokemonCard";
-import { Box, Container, Grid, GridItem, Stack } from "@chakra-ui/react";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { getAllPokemons } from "@/lib/pokemon";
 
 const geistSans = Geist({
@@ -16,7 +15,6 @@ const geistMono = Geist_Mono({
 });
 
 export default function HomePage({ data }) {
-  // console.log("data", data);
   return (
     <>
       <Head>
@@ -29,21 +27,24 @@ export default function HomePage({ data }) {
       <main>
         <Box
           width={"100%"}
-          // height={"100vh"}
-          bg="red.300"
-          // py={"4"}
           bgImage="url('/forest.jpg')"
           bgPosition="center"
-          bgRepeat="no-repeat"
-          bgSize="cover"  zIndex={-1}
-         
+          bgSize="contain"
+          bgRepeat="repeat-y"
+          zIndex={-1}
         >
-          <Box width="100%" height="100%" zIndex={1} backgroundColor="rgba(235, 235, 235, 0.3)" py={8}>
+          <Box
+            width="100%"
+            height="100%"
+            zIndex={1}
+            backgroundColor="rgba(235, 235, 235, 0.3)"
+            py={8}
+          >
             <Grid
               templateColumns={{
-                base: "repeat(2, 1fr)",
-                md: "repeat(3, 1fr)",
-                lg: "repeat(4, 1fr)",
+                base: "repeat(3, 1fr)",
+                md: "repeat(4, 1fr)",
+                lg: "repeat(5, 1fr)",
               }}
               gap="6"
               mx="auto"

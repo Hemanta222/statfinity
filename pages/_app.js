@@ -1,14 +1,13 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Provider } from "@/components/ui/provider";
 import "@/styles/globals.css";
-import { ChakraProvider } from "@chakra-ui/react";
-import { system } from "@chakra-ui/react/preset";
 export default function App({ Component, pageProps }) {
   return (
-    <ChakraProvider value={system}>
+    <Provider>
       <Header />
       <Component {...pageProps} />
       <Footer />
-    </ChakraProvider>
+    </Provider>
   );
 }

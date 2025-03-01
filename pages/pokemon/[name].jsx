@@ -1,30 +1,17 @@
 import { getAllPokemons, getPokemonDetailsById } from "@/lib/pokemon";
-import {
-  Badge,
-  Box,
-  Card,
-  Checkbox,
-  Text,
-  HStack,
-  List,
-  Table,
-  Tabs,
-} from "@chakra-ui/react";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import { Badge, Box, Card, HStack, Image, Table, Tabs } from "@chakra-ui/react";
+
 import React from "react";
 
 const PokemonDetailsPage = ({ pokemonDetails }) => {
-  const router = useRouter();
-  console.log("pokemonDetails", pokemonDetails);
   return (
     <Box width={"90%"} py={"4"} mx="auto">
-      <Card.Root flexDirection="row" overflow="hidden" p={8}>
+      <Card.Root flexDirection="row" overflow="hidden" p={{ base: 2, sm: 8 }} variant='elevated'>
         <Image
-          width={250}
-          height={300}
           src={pokemonDetails?.sprites?.other?.dream_world?.front_default}
           alt={pokemonDetails.name}
+          width={{ base: 120, sm: 150, md: 250 }}
+          height={"auto"}
         />
         <Box pl={8}>
           <Card.Body>
@@ -59,9 +46,15 @@ const PokemonDetailsPage = ({ pokemonDetails }) => {
             <Table.Root size="md" stickyHeader interactive>
               <Table.Header>
                 <Table.Row bg="bg.emphasized">
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Name</Table.ColumnHeader>
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Is Hidden</Table.ColumnHeader>
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Slot</Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Name
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Is Hidden
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Slot
+                  </Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
 
@@ -86,8 +79,12 @@ const PokemonDetailsPage = ({ pokemonDetails }) => {
             <Table.Root size="md" stickyHeader interactive>
               <Table.Header>
                 <Table.Row bg="bg.emphasized">
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Name</Table.ColumnHeader>
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Slot</Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Name
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Slot
+                  </Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
 
@@ -109,9 +106,15 @@ const PokemonDetailsPage = ({ pokemonDetails }) => {
             <Table.Root size="md" stickyHeader interactive>
               <Table.Header>
                 <Table.Row bg="bg.emphasized">
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Name</Table.ColumnHeader>
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Base Stat</Table.ColumnHeader>
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Effort</Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Name
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Base Stat
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Effort
+                  </Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
 
@@ -134,8 +137,12 @@ const PokemonDetailsPage = ({ pokemonDetails }) => {
             <Table.Root size="md" stickyHeader interactive>
               <Table.Header>
                 <Table.Row bg="bg.emphasized">
-                  <Table.ColumnHeader p={2} fontWeight='bold'>Name</Table.ColumnHeader>
-                  <Table.ColumnHeader p={2} fontWeight='bold'>URL</Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    Name
+                  </Table.ColumnHeader>
+                  <Table.ColumnHeader p={2} fontWeight="bold">
+                    URL
+                  </Table.ColumnHeader>
                 </Table.Row>
               </Table.Header>
 
@@ -162,13 +169,11 @@ export default PokemonDetailsPage;
 export async function getStaticPaths() {
   const pokemons = await getAllPokemons();
   const paths = pokemons.map((pokemon) => ({
-    params: { id: pokemon.id.toString() },
+    params: { name: pokemon.name.toString() },
   }));
-
   return { paths, fallback: false };
 }
 export async function getStaticProps({ params }) {
-  //   console.log("params", params);
-  const pokemonDetails = await getPokemonDetailsById(params.id.toString());
+  const pokemonDetails = await getPokemonDetailsById(params.name.toString());
   return { props: { pokemonDetails } };
 }
